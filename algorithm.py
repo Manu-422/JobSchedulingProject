@@ -12,10 +12,7 @@ def topological_sort(jobs, dependencies):
         graph[prerequisite].append(job)
         in_degree[job] += 1
 
-    queue = deque(
-        job for job in jobs if in_degree[job] == 0
-    )
-
+    queue = deque(job for job in jobs if in_degree[job] == 0)
     schedule = []
 
     while queue:
@@ -24,7 +21,6 @@ def topological_sort(jobs, dependencies):
 
         for next_job in graph[current]:
             in_degree[next_job] -= 1
-
             if in_degree[next_job] == 0:
                 queue.append(next_job)
 
